@@ -2,6 +2,7 @@
 
     $("#btIncluir").on('click', onClickIncluir);
     $("#btSalvarDepartamento").on('click', onClickSalvar);
+    $("#btOrdemPagamentos").on('click', onClickOrdemPagamento);
 });
 
 var model = {
@@ -96,3 +97,6 @@ function buscarErro(data) {
     console.log(data);
 }
 
+function onClickOrdemPagamento() {
+    window.location.href = "../OrdemPagamento/Index";
+}

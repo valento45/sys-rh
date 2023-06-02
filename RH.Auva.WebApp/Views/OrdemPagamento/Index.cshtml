@@ -1,0 +1,30 @@
+﻿@using Rh.Auva.Domain.Departamentos;
+@model List<Departamento>;
+
+<div class="container-fluid mt-5">
+
+    <h2>Ordem de pagamentos</h2>
+    <hr />
+
+
+    <div class="row">
+        <label>Selecione um departamento:</label>
+        <select id="combobox" class="form-select" style="max-width: 600px;">
+            @foreach (var dpto in Model)
+            {
+                <option value="@dpto.Codigo">@dpto.NomeDepartamento</option>
+            }
+        </select>
+
+
+        <button class="btn btn-close-white" data-toggle="tooltip" title="Novo departamento" style="width: 40px; margin-left: 5px;"
+        onclick="javascript:window.location.href='../Departamento/Incluir'">
+            <img style="width: 30px;" src="~/imgs/Novo_2.png" />
+        </button>
+
+    </div>
+
+    <div style="width: 100%;">
+        <button class="btn btn-dark btn-black-hover mt-5" style="text-align: center;">Importar planilha</button>
+    </div>
+</div>
