@@ -1,0 +1,37 @@
+﻿body {
+
+
+
+}
+
+
+.btn-icon{
+    width: 30px;
+}
+
+.btn-black-hover:hover{
+    color:ghostwhite;
+    background-color: gray;
+}
+
+.btn-dark:hover{
+    color: black;
+    background-color: gray;
+}
+
+
+.message-success {
+    background-color: #70DB9355;
+    border-bottom-style: groove;
+    border-top-style: groove;
+    border-left-style: groove;
+    border-right-style: groove;
+}
+
+.message-erro {
+    background-color: #e6191955;
+    border-bottom-style: groove;
+    border-top-style: groove;
+    border-left-style: groove;
+    border-right-style: groove;
+}

@@ -1,0 +1,66 @@
+﻿@using Rh.Auva.Domain.Departamentos;
+@model List<Departamento>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="containter-fluid mt-5">
+    <h2>Departamentos</h2>
+    <hr />
+
+    <div class="form-control-lg mt-5 ">
+        <label>Buscar</label>
+        <input type="text" id="txtFiltro" class="col-md-6 mb-2" style="width: 100%;" />
+        <button class="btn btn-dark" style="width: 100px;">Buscar</button>
+
+
+        <table class="table table-striped  mt-3">
+            <thead class="table-dark">
+                <tr>
+                    <td>
+                        Codigo
+                    </td>
+                    <td>
+                        Nome departamento
+                    </td>
+                    <td>Ação</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach(var dpto in Model)
+                {
+                    <tr>
+                        <td>@dpto.Codigo</td>
+                        <td>@dpto.NomeDepartamento</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-success btn-sm btn-black-hover" style="margin-right: 5px;"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="Editar">
+                                <img class="btn-icon" src="~/imgs/editar.png" />
+                            </button>
+
+                            <button type="button" class="btn btn-outline-success   btn-sm btn-black-hover"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="Excluir" onclick="excluir(@dpto.Codigo)">
+                                <img class="btn-icon" src="~/imgs/lixeira.png" />
+                            </button>
+
+                        </td>
+                    </tr>
+                }             
+
+            </tbody>
+        </table>
+
+        <button id="btIncluir" class="btn btn-dark justify-content-end" style="width: 100px;">Incluir</button>
+        <button class="btn btn-dark justify-content-end" style="width: 200px;">Importar ficha de ponto</button>
+    </div>
+
+
+</div>
+
+
