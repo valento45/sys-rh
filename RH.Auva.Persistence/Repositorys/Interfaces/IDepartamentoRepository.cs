@@ -14,7 +14,7 @@ namespace RH.Auva.Persistence.Repositorys.Interfaces
         /// </summary>
         /// <param name="departamento"></param>
         /// <returns></returns>
-        Task<bool> InserirRendimentoAsync(Departamento departamento);
+        Task<bool> InserirAsync(Departamento departamento);
 
         /// <summary>
         /// Atualizar o departamento na base de dados
@@ -37,6 +37,14 @@ namespace RH.Auva.Persistence.Repositorys.Interfaces
         /// <param name="filtro"></param>
         /// <returns></returns>
         Task<List<Departamento>> GetAllAsync(string filtro = "");       
+
+
+        /// <summary>
+        /// Obter departamento por ID na base de dados
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<Departamento> GetByIdAsync(int id);       
 
     }
 }

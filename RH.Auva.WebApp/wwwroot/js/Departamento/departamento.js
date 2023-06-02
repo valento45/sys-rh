@@ -2,7 +2,6 @@
 
     $("#btIncluir").on('click', onClickIncluir);
     $("#btSalvarDepartamento").on('click', onClickSalvar);
-
 });
 
 var model = {
@@ -16,11 +15,11 @@ function onClickIncluir() {
 
 function onClickSalvar() {
     clearMensagens();
-
+    model.Codigo = $("#txtCodigo").val();
     model.NomeDepartamento = $("#txtNomeDepartamento").val();
 
     if (!model.NomeDepartamento) {
-        alert("Preencha todos os campos !");        
+        alert("Preencha todos os campos !");
         return;
     }
 
@@ -36,7 +35,6 @@ function salvarSucesso(data) {
         $("#txtNomeDepartamento").val("");
 
     }
-
 }
 function salvarErro(data) {
     $("#mensagem-erro").removeClass('d-none');
@@ -63,7 +61,7 @@ function excluir(codigo) {
 
 function excluirSucesso(data) {
     if (data) {
-        window.location.href = '../Home/Index';
+        window.location.href = '../Departamento/Index';
     }
 }
 
@@ -71,4 +69,30 @@ function excluirErro(data) {
     alert("Erro ao tentar excluir o departamento!");
 }
 
+
+function editar(id) {
+    if (id > 0) {
+        window.location.href = "../Departamento/Editar?id=" + id;
+    }
+}
+
+
+function buscar() {
+    $("#divPartialDepartamentos").empty();
+
+
+    var filtro = $("#txtFiltro").val();
+    util.ajax.get("../Departamento/ListarDepartamentosPartial?filtro=" + filtro, null, buscarSucesso, buscarErro);
+}
+
+function buscarSucesso(data) {
+    if (data) {
+
+        $("#divPartialDepartamentos").html(data);
+    }
+}
+
+function buscarErro(data) {
+    console.log(data);
+}
 

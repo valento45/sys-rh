@@ -18,12 +18,12 @@ body {
 }
 
 .navbar-dark {
-    background-color: #00000055 !important;
+    background-color: teal !important;
 }
 
 
 .navbar-dark  a{
    
-    color: black !important;
+    color: white !important;
     
 }

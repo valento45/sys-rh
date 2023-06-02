@@ -1,66 +1,89 @@
-﻿@using Rh.Auva.Domain.Departamentos;
-@model List<Departamento>
-
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="containter-fluid mt-5">
-    <h2>Departamentos</h2>
+    <h1>Igor Helio Martins de Carvalho</h1>
+    <br />
+    <h5><b>Objetivo:</b> Analista desenvolvedor .NET Pleno</h5>
+    <h5><b>Pretensão salarial:</b> 7.000,00R$</h5>
+    <h5><b>Data do teste:</b> 02/06/2023</h5>
+
+
+
     <hr />
 
-    <div class="form-control-lg mt-5 ">
-        <label>Buscar</label>
-        <input type="text" id="txtFiltro" class="col-md-6 mb-2" style="width: 100%;" />
-        <button class="btn btn-dark" style="width: 100px;">Buscar</button>
+    <div class="mt-5">
+        <h2 ><b>Tecnologias e práticas utilizadas no desenvolvimento</b></h2>
 
-
-        <table class="table table-striped  mt-3">
-            <thead class="table-dark">
+        <table class="table mt-3">
+            <thead class="table-teal">
                 <tr>
-                    <td>
-                        Codigo
-                    </td>
-                    <td>
-                        Nome departamento
-                    </td>
-                    <td>Ação</td>
+                    <td>Nome / Descrição</td>
+                    <td>Detalhes</td>
                 </tr>
             </thead>
 
             <tbody>
-                @foreach(var dpto in Model)
-                {
-                    <tr>
-                        <td>@dpto.Codigo</td>
-                        <td>@dpto.NomeDepartamento</td>
-                        <td>
-                            <button type="button" class="btn btn-outline-success btn-sm btn-black-hover" style="margin-right: 5px;"
-                                    data-toggle="tooltip"
-                                    data-placement="top"
-                                    title="Editar">
-                                <img class="btn-icon" src="~/imgs/editar.png" />
-                            </button>
+                <tr>
+                    <td>.NET 6</td>
+                    <td>C#</td>
+                </tr>
 
-                            <button type="button" class="btn btn-outline-success   btn-sm btn-black-hover"
-                                    data-toggle="tooltip"
-                                    data-placement="top"
-                                    title="Excluir" onclick="excluir(@dpto.Codigo)">
-                                <img class="btn-icon" src="~/imgs/lixeira.png" />
-                            </button>
+                <tr>
+                    <td>DAPPER</td>
+                    <td>Pacote para manipulação de dados</td>
+                </tr>
 
-                        </td>
-                    </tr>
-                }             
+                <tr>
+                    <td>xUnit</td>
+                    <td>Framwork de testes unitários</td>
+                </tr>
+                <tr>
+                    <td>TDD (Test Driven Development)</td>
+                    <td>Prática de Testes unitários ( programação orientada a testes )</td>
+                </tr>
+                <tr>
+                    <td>MySql</td>
+                    <td>Banco de dados</td>
+                </tr>
+
+                <tr>
+                    <td>DDD (Arquitetura em camadas)</td>
+                    <td>(Domain Driven Design)</td>
+                </tr>
+
+
+
+                <tr>
+                    <td>Ajax</td>
+                    <td>Responsável pelas chamadas aos serviços através dos métodos GET, POST, PUT, etc;</td>
+                </tr>
+
+                <tr>
+                    <td>ASP .NET MVC</td>
+                    <td>Aplicação dotnet utilizando arquitetura MVC (Model-View-Controllers)</td>
+                </tr>
+
+                <tr>
+                    <td>Javascript e JQuery</td>
+                    <td>Eventos e interação com frontEnd</td>
+                </tr>
+
+                <tr>
+                    <td>HTML</td>
+                    <td>Linguagem de marcação para interfaces visuais</td>
+                </tr>
+
+                <tr>
+                    <td>CSS</td>
+                    <td>Linguagem de estilização ( Cascading Style Sheet )</td>
+                </tr>
 
             </tbody>
+            
         </table>
-
-        <button id="btIncluir" class="btn btn-dark justify-content-end" style="width: 100px;">Incluir</button>
-        <button class="btn btn-dark justify-content-end" style="width: 200px;">Importar ficha de ponto</button>
     </div>
-
-
 </div>
 
 

@@ -9,14 +9,21 @@
     width: 30px;
 }
 
-.btn-black-hover:hover{
-    color:ghostwhite;
-    background-color: gray;
+
+
+.btn-dark {
+    color: teal;
+    background-color: ghostwhite;
 }
 
-.btn-dark:hover{
-    color: black;
-    background-color: gray;
+.btn-black-hover:hover{
+    color:ghostwhite;
+    background-color: teal;
+}
+
+.btn-dark:hover {
+    color: ghostwhite;
+    background-color: teal;
 }
 
 
@@ -34,4 +41,10 @@
     border-top-style: groove;
     border-left-style: groove;
     border-right-style: groove;
+}
+
+
+.table-teal{
+    background-color: teal !important;
+    color: white;
 }

@@ -1,0 +1,53 @@
+﻿@using Rh.Auva.Domain.Departamentos;
+@model List<Departamento>
+
+<table class="table table-striped  mt-3">
+    <thead class="table-teal">
+        <tr>
+            <td>
+                Codigo
+            </td>
+            <td>
+                Nome departamento
+            </td>
+            <td style="text-align:center;">Ação</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var dpto in Model)
+        {
+            <tr>
+                <td>@dpto.Codigo</td>
+                <td>@dpto.NomeDepartamento</td>
+                <td style="text-align:center;">
+                    <button type="button" class="btn btn-outline-success btn-sm btn-black-hover" style="margin-right: 5px;"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Editar" onclick="editar(@dpto.Codigo)">
+                        <img class="btn-icon" src="~/imgs/editar.png" />
+                    </button>
+
+                    <button type="button" class="btn btn-outline-success   btn-sm btn-black-hover"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Excluir" onclick="excluir(@dpto.Codigo)">
+                        <img class="btn-icon" src="~/imgs/lixeira.png" />
+                    </button>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+    @if (!Model?.Any() ?? true)
+    {
+        <tfoot>
+            <tr>
+                <td class="text-center"></td>
+                <td class="text-center" style="text-align:center;">Não foi encontrado nenhum departamento !</td>
+                <td class="text-center"></td>
+            </tr>
+        </tfoot>
+    }
+</table>

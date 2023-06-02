@@ -20,12 +20,12 @@ namespace RH.Auva.Persistence.Repositorys
         }
 
 
-        public async Task<bool> InserirRendimentoAsync(Departamento departamento)
+        public async Task<bool> InserirAsync(Departamento departamento)
         {
-            string query = $"insert into tb_departamento (nome) values ('{departamento.NomeDepartamento}')";
 
-
-            return await base.ExecuteAsync(query);
+                string query = $"insert into tb_departamento (nome) values ('{departamento.NomeDepartamento}')";
+                return await base.ExecuteAsync(query);
+            
         }
 
         public async Task<bool> AtualizarAsync(Departamento departamento)
@@ -36,7 +36,7 @@ namespace RH.Auva.Persistence.Repositorys
 
             return await base.ExecuteAsync(query);
         }
-        
+
 
         public async Task<bool> ExcluirAsync(int codigo)
         {
@@ -52,6 +52,17 @@ namespace RH.Auva.Persistence.Repositorys
                   $" WHERE nome  LIKE '{filtro}%'";
 
             return await base.QueryAsync<Departamento>(query);
+        }
+
+        public async Task<Departamento> GetByIdAsync(int id)
+        {
+            string query = "select id as Codigo, nome as NomeDepartamento from tb_departamento" +
+                $" WHERE id = {id}";
+
+            var result = await base.QueryAsync<Departamento>(query);
+
+
+            return result?.FirstOrDefault() ?? throw new ArgumentNullException(nameof(DepartamentoRepository));
         }
     }
 }

@@ -1,0 +1,31 @@
+﻿@using Rh.Auva.Domain.Departamentos;
+@model List<Departamento>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="containter-fluid mt-5">
+    <h2>Departamentos</h2>
+    <hr />
+
+    <div class="form-control-lg mt-5 ">
+        <label>Buscar</label>
+        <input type="text" id="txtFiltro" class="col-md-6 mb-2" style="width: 100%;" />
+        <button id="btBuscar" class="btn btn-dark" style="width: 100px;" onclick="buscar()">Buscar</button>
+
+        <div id="divPartialDepartamentos">
+            @await Html.PartialAsync("Departamento/Partial/ListaDepartamentosPartial", Model)
+
+        </div>
+
+        <div style="text-align: center;">
+            <button id="btIncluir" class="btn btn-dark" style="max-width: 600px; ">Novo departamento</button>
+            <button class="btn btn-dark " style="max-width: 600px; ">Importar ordem de pagamentos</button>
+        </div>
+    </div>
+
+
+</div>
+
+

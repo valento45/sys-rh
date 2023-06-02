@@ -14,9 +14,19 @@ namespace RH.Auva.WebApp.Controllers
             _departamentoRepository = rendimentosDepartamentoRepository;
         }
 
+
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+
+            var result = await _departamentoRepository.GetAllAsync();
+            return View(result);
+        }
+
+
         [HttpGet]
         public async Task<IActionResult> Incluir()
-        {         
+        {
 
             return View();
         }
@@ -24,11 +34,24 @@ namespace RH.Auva.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Incluir([FromBody] Departamento departamento)
         {
-            
-            return Ok(await _departamentoRepository.InserirRendimentoAsync(departamento));
-            
+
+            if (departamento.Codigo > 0)
+                return Ok(await _departamentoRepository.AtualizarAsync(departamento));
+
+            else
+                return Ok(await _departamentoRepository.InserirAsync(departamento));
+
         }
 
+
+
+        [HttpGet]
+        public async Task<IActionResult> Editar(int id)
+        {
+            var result = await _departamentoRepository.GetByIdAsync(id);
+
+            return View("Incluir", result);
+        }
 
         [HttpPost]
         public async Task<IActionResult> Excluir([FromBody] int codigo)
@@ -36,6 +59,13 @@ namespace RH.Auva.WebApp.Controllers
             return Ok(await _departamentoRepository.ExcluirAsync(codigo));
         }
 
+
+        [HttpGet]
+        public async Task<IActionResult> ListarDepartamentosPartial(string filtro = "")
+        {
+            var result = await _departamentoRepository.GetAllAsync(filtro);
+            return PartialView("Departamento/Partial/ListaDepartamentosPartial", result); ;
+        }
 
     }
 }

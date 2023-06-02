@@ -25,6 +25,10 @@ namespace RH.Auva.WebApp.Controllers
         public async Task<IActionResult> Privacy()
         {
             return View();
+        }   
+        public async Task<IActionResult> About()
+        {
+            return View();
         }
 
         

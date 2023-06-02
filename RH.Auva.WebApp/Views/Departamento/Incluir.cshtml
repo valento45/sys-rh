@@ -1,12 +1,17 @@
-﻿
+﻿@using Rh.Auva.Domain.Departamentos;
+@model Departamento;
 
 <div class="containter-fluid mt-5">
     <h2 id="lblCadastroDepartamento">Incluir departamento</h2>
     <hr />
 
     <div class="form-control-lg mt-5 ">
+        @if (Model?.Codigo > 0)
+        {
+            <input id="txtCodigo" type="hidden" value="@Model.Codigo" />
+        }
         <label>Nome departamento:</label>
-        <input type="text" id="txtNomeDepartamento" placeholder="Exemplo: RH" class="col-md-6 mb-2 mt-2" style="width: 100%; " />
+        <input value="@(Model != null  ? Model.NomeDepartamento : "")" type="text" id="txtNomeDepartamento" placeholder="Exemplo: RH" class="col-md-6 mb-2 mt-2" style="width: 100%; " />
         <button id="btSalvarDepartamento" class="btn btn-dark" style="width: 100px;">Salvar</button>
     </div>
 
