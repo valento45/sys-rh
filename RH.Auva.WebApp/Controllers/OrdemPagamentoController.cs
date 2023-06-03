@@ -1,29 +1,48 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Rh.Auva.Domain.Funcionarios;
+using RH.Auva.Application.Application.CSV.Interfaces;
+using RH.Auva.Application.Models.Departamento;
+using RH.Auva.Factory.Command.Interfaces;
+using RH.Auva.Factory.Interfaces;
 using RH.Auva.Persistence.Repositorys.Interfaces;
+using System.Web;
 
 namespace RH.Auva.Application.Controllers
 {
     public class OrdemPagamentoController : Controller
     {
         private readonly IDepartamentoRepository _departamentoRepository;
+        private readonly ICsvApplication _csvApplication;
 
-        public OrdemPagamentoController(IDepartamentoRepository departamentoRepository)
+        public OrdemPagamentoController(IDepartamentoRepository departamentoRepository, ICsvApplication csvApplication)
         {
             _departamentoRepository = departamentoRepository;
+            _csvApplication = csvApplication;
         }
 
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var result = await _departamentoRepository.GetAllAsync();
+            var result = new ImportacaoPontoDepartamentoViewModel();
+            result.Departamentos = await _departamentoRepository.GetAllAsync();
+
             return View(result);
         }
 
 
-        public async Task<IActionResult> Importar(string base64)
+        [HttpPost]
+        public async Task<FileResult> Importar(ImportacaoPontoDepartamentoViewModel fileData)
         {
-            return View();
+            if (fileData?.File != null)
+            {
+                var file = await _csvApplication.GetFileAsync(fileData);
+
+                return File(file.Bytes, "application/json", file.Filename);
+            }
+
+            else
+                throw new ArgumentNullException("Nenhum arquivo selecionado!", new Exception(nameof(OrdemPagamentoController)));
         }
     }
 }

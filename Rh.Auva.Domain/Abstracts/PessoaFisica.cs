@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Rh.Auva.Domain.Abstracts
 {
-    public abstract class PessoaFisicaAbstract
+    public abstract class PessoaFisica
     {
         #region PROPRIEDADE PUBLICAS
         public string Nome { get; set; }
         #endregion
 
         #region Construtores
-        public PessoaFisicaAbstract(string nome)
+        public PessoaFisica(string nome)
         {
             Nome = nome;
         }

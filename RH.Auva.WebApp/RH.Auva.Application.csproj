@@ -15,4 +15,8 @@
     <ProjectReference Include="..\RH.Auva.Persistence\RH.Auva.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\PontoFuncionario\" />
+  </ItemGroup>
+
 </Project>

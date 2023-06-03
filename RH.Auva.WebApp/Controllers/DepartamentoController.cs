@@ -32,7 +32,7 @@ namespace RH.Auva.WebApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Incluir([FromBody] Departamento departamento)
+        public async Task<IActionResult> Incluir([FromBody] DepartamentoDomain departamento)
         {
 
             if (departamento.Codigo > 0)

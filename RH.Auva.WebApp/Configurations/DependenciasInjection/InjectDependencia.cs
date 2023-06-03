@@ -13,6 +13,7 @@ namespace RH.Auva.Application.Configurations.DependenciasInjection
         {
             services.AddControllersWithViews();
             services.AddFactorys();
+            services.AddCommands();
             services.AddRepositorys();
             services.AddDataBaseConfiguration(configuration);
         }

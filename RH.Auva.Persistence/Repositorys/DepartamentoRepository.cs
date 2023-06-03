@@ -20,7 +20,7 @@ namespace RH.Auva.Persistence.Repositorys
         }
 
 
-        public async Task<bool> InserirAsync(Departamento departamento)
+        public async Task<bool> InserirAsync(DepartamentoDomain departamento)
         {
 
                 string query = $"insert into tb_departamento (nome) values ('{departamento.NomeDepartamento}')";
@@ -28,7 +28,7 @@ namespace RH.Auva.Persistence.Repositorys
             
         }
 
-        public async Task<bool> AtualizarAsync(Departamento departamento)
+        public async Task<bool> AtualizarAsync(DepartamentoDomain departamento)
         {
             string query = $"update tb_departamento  set nome = '{departamento.NomeDepartamento}'" +
                 $" WHERE id = {departamento.Codigo}";
@@ -46,20 +46,20 @@ namespace RH.Auva.Persistence.Repositorys
             return await base.ExecuteAsync(query);
         }
 
-        public async Task<List<Departamento>> GetAllAsync(string filtro = "")
+        public async Task<List<DepartamentoDomain>> GetAllAsync(string filtro = "")
         {
             string query = $"select id as Codigo, nome as NomeDepartamento from tb_departamento" +
                   $" WHERE nome  LIKE '{filtro}%'";
 
-            return await base.QueryAsync<Departamento>(query);
+            return await base.QueryAsync<DepartamentoDomain>(query);
         }
 
-        public async Task<Departamento> GetByIdAsync(int id)
+        public async Task<DepartamentoDomain> GetByIdAsync(int id)
         {
             string query = "select id as Codigo, nome as NomeDepartamento from tb_departamento" +
                 $" WHERE id = {id}";
 
-            var result = await base.QueryAsync<Departamento>(query);
+            var result = await base.QueryAsync<DepartamentoDomain>(query);
 
 
             return result?.FirstOrDefault() ?? throw new ArgumentNullException(nameof(DepartamentoRepository));

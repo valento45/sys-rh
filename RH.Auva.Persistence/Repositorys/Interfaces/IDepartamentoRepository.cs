@@ -14,14 +14,14 @@ namespace RH.Auva.Persistence.Repositorys.Interfaces
         /// </summary>
         /// <param name="departamento"></param>
         /// <returns></returns>
-        Task<bool> InserirAsync(Departamento departamento);
+        Task<bool> InserirAsync(DepartamentoDomain departamento);
 
         /// <summary>
         /// Atualizar o departamento na base de dados
         /// </summary>
         /// <param name="departamento"></param>
         /// <returns></returns>
-        Task<bool> AtualizarAsync(Departamento departamento);
+        Task<bool> AtualizarAsync(DepartamentoDomain departamento);
 
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace RH.Auva.Persistence.Repositorys.Interfaces
         /// </summary>
         /// <param name="filtro"></param>
         /// <returns></returns>
-        Task<List<Departamento>> GetAllAsync(string filtro = "");       
+        Task<List<DepartamentoDomain>> GetAllAsync(string filtro = "");       
 
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace RH.Auva.Persistence.Repositorys.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<Departamento> GetByIdAsync(int id);       
+        Task<DepartamentoDomain> GetByIdAsync(int id);       
 
     }
 }

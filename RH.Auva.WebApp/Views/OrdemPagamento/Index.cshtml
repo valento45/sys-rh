@@ -1,5 +1,5 @@
-﻿@using Rh.Auva.Domain.Departamentos;
-@model List<Departamento>;
+﻿@using RH.Auva.Application.Models.Departamento;
+@model ImportacaoPontoDepartamentoViewModel;
 
 <div class="container-fluid mt-5">
 
@@ -9,8 +9,8 @@
 
     <div class="row">
         <label>Selecione um departamento:</label>
-        <select id="combobox" class="form-select" style="max-width: 600px;">
-            @foreach (var dpto in Model)
+        <select id="cmbDepartamentos" class="form-select" style="max-width: 600px;">
+            @foreach (var dpto in Model.Departamentos)
             {
                 <option value="@dpto.Codigo">@dpto.NomeDepartamento</option>
             }
@@ -18,13 +18,24 @@
 
 
         <button class="btn btn-close-white" data-toggle="tooltip" title="Novo departamento" style="width: 40px; margin-left: 5px;"
-        onclick="javascript:window.location.href='../Departamento/Incluir'">
+                onclick="javascript:window.location.href='../Departamento/Incluir'">
             <img style="width: 30px;" src="~/imgs/Novo_2.png" />
         </button>
 
     </div>
 
-    <div style="width: 100%;">
-        <button class="btn btn-dark btn-black-hover mt-5" style="text-align: center;">Importar planilha</button>
-    </div>
+
+    <form asp-action="Importar" asp-controller="OrdemPagamento" method="post" enctype="multipart/form-data">
+        <div style="width: 100%;" class="mt-5">
+            <input id="campoArquivo" asp-for="File" />
+            <input type="hidden" id="txtDepartamentoSelecionado" asp-for="IdDepartamentoSelecionao"  />
+            <br />
+            <button class="btn btn-dark btn-black-hover mt-5" style="text-align: center;" onclick="importar()" type="submit">Importar</button>
+        </div>
+    </form>
 </div>
+
+
+@section Scripts{
+    <script src="~/js/Ponto/importacao.js" asp-append-version="true"></script>
+}
