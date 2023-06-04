@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RH.Auva.Factory.Interfaces
+namespace RH.Auva.Factory.Factorys.Interfaces
 {
     public interface ICsvFactory
     {

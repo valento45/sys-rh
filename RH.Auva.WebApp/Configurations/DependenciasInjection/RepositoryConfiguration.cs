@@ -11,6 +11,8 @@ namespace RH.Auva.WebApp.Configurations.DependenciasInjection
         public static void AddRepositorys(this IServiceCollection services)
         {
             services.AddTransient<IDepartamentoRepository, DepartamentoRepository>();
+            services.AddTransient<IFuncionarioRepository, FuncionarioRepository>();
+            services.AddTransient<IPontoFuncionarioRepository, PontoFuncionarioRepository>();
         }
 
 

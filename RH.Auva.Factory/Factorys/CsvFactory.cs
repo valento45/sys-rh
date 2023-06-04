@@ -4,7 +4,7 @@ using CsvHelper.Configuration;
 using Rh.Auva.Domain.ControlePonto;
 using Rh.Auva.Domain.ControlesIndices;
 using Rh.Auva.Domain.Funcionarios;
-using RH.Auva.Factory.Interfaces;
+using RH.Auva.Factory.Factorys.Interfaces;
 using RH.Auva.Factory.Mappers;
 using RH.Auva.Factory.Mappers.Objetos;
 using System;
@@ -24,7 +24,7 @@ namespace RH.Auva.Factory.Factorys
             _ConfigurationCsv = csvConfiguration;
         }
 
-        public async Task<IEnumerable<PontoFuncionarioDomain>> ImportarFolhaFuncionarios(byte[] bytes)
+        public Task<IEnumerable<PontoFuncionarioDomain>> ImportarFolhaFuncionarios(byte[] bytes)
         {
             List<PontoFuncionarioDomain> result = new List<PontoFuncionarioDomain>();
 
@@ -43,7 +43,7 @@ namespace RH.Auva.Factory.Factorys
                             result.Add(item.ToPontoFuncionarioDomain());
                         }                        
 
-                        return result;
+                        return Task.FromResult(result.AsEnumerable());
                     }
                 }
             }

@@ -3,18 +3,17 @@ using Rh.Auva.Domain.Funcionarios;
 using RH.Auva.Application.Application.CSV.Interfaces;
 using RH.Auva.Application.Models.Departamento;
 using RH.Auva.Factory.Command.Interfaces;
-using RH.Auva.Factory.Interfaces;
 using RH.Auva.Persistence.Repositorys.Interfaces;
 using System.Web;
 
 namespace RH.Auva.Application.Controllers
 {
-    public class OrdemPagamentoController : Controller
+    public class ControlePontoController : Controller
     {
         private readonly IDepartamentoRepository _departamentoRepository;
         private readonly ICsvApplication _csvApplication;
 
-        public OrdemPagamentoController(IDepartamentoRepository departamentoRepository, ICsvApplication csvApplication)
+        public ControlePontoController(IDepartamentoRepository departamentoRepository, ICsvApplication csvApplication)
         {
             _departamentoRepository = departamentoRepository;
             _csvApplication = csvApplication;
@@ -42,7 +41,7 @@ namespace RH.Auva.Application.Controllers
             }
 
             else
-                throw new ArgumentNullException("Nenhum arquivo selecionado!", new Exception(nameof(OrdemPagamentoController)));
+                throw new ArgumentNullException("Nenhum arquivo selecionado!", new Exception(nameof(ControlePontoController)));
         }
     }
 }

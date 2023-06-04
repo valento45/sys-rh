@@ -1,6 +1,6 @@
 ﻿using CsvHelper.Configuration;
 using RH.Auva.Factory.Factorys;
-using RH.Auva.Factory.Interfaces;
+using RH.Auva.Factory.Factorys.Interfaces;
 using System.Globalization;
 using System.Text;
 
@@ -14,6 +14,7 @@ namespace RH.Auva.WebApp.Configurations.DependenciasInjection
             services.AddCsvConfiguration();
 
             services.AddTransient<ICsvFactory, CsvFactory>();
+            services.AddTransient<IResumoFinanceiroDepartamentoFactory, ResumoFinanceiroDepartamentoFactory>();
         }
 
         public static void AddCsvConfiguration(this IServiceCollection services)

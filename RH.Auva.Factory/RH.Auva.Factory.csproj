@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Rh.Auva.Domain\Rh.Auva.Domain.csproj" />
+    <ProjectReference Include="..\RH.Auva.Persistence\RH.Auva.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

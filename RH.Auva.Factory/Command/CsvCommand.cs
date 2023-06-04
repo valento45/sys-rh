@@ -1,6 +1,6 @@
 ﻿using Rh.Auva.Domain.ControlePonto;
 using RH.Auva.Factory.Command.Interfaces;
-using RH.Auva.Factory.Interfaces;
+using RH.Auva.Factory.Factorys.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

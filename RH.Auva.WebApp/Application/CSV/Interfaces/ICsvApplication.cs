@@ -6,8 +6,12 @@ namespace RH.Auva.Application.Application.CSV.Interfaces
 {
     public interface ICsvApplication
     {
-
-        Task<FileCsv> GetFileAsync(ImportacaoPontoDepartamentoViewModel obj);
+        /// <summary>
+        /// Obter arquivo JSON assincrono
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        Task<FileCsv> GetFileAsync(ImportacaoPontoDepartamentoViewModel obj);  
 
 
     }

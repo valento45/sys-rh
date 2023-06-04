@@ -13,23 +13,16 @@ namespace Rh.Auva.Domain.Departamentos
         #region Propriedades 
         public int Codigo { get; set; }
         public string NomeDepartamento { get; set; }
-        public List<PontoFuncionarioDomain> PontoFuncionarios { get; private set; }
-
         #endregion
 
 
         #region Construtores
         public DepartamentoDomain()
         {
-            PontoFuncionarios = new List<PontoFuncionarioDomain>();
+           
         }
 
         #endregion
 
-
-        public void InformarPontosFuncionario(List<PontoFuncionarioDomain> pontoFuncionarioDomains)
-        {
-            PontoFuncionarios = pontoFuncionarioDomains;
-        }
     }
 }
