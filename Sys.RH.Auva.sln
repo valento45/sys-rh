@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.6.33712.159
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RH.Auva.Application", "RH.Auva.WebApp\RH.Auva.Application.csproj", "{5E115764-0891-48A6-B7F4-1D00313CA9A7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{081F222B-7490-47BC-9413-25A3F05AA390} = {081F222B-7490-47BC-9413-25A3F05AA390}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rh.Auva.Domain", "Rh.Auva.Domain\Rh.Auva.Domain.csproj", "{081F222B-7490-47BC-9413-25A3F05AA390}"
 EndProject
