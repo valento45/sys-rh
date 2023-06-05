@@ -32,10 +32,6 @@ namespace RH.Auva.Persistence.Repositorys
 
             return await base.ExecuteCommand(cmd);
 
-            //string query = "insert into tb_funcionario (nome, valor_hora, data_importacao)" +
-            //    $" values ('{funcionario.Nome}', {funcionario.ValorHora}, str_to_date('{funcionario.DataImportacao.ToString("dd/MM/yyyy")}','%d/%m/%Y'))";
-
-            //return await base.ExecuteAsync(query);
         }
 
         public async Task<bool> UpdateAsync(FuncionarioDomain funcionario)
