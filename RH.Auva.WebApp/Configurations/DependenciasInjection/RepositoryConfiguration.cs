@@ -2,6 +2,7 @@
 using RH.Auva.Persistence.Repositorys;
 using RH.Auva.Persistence.Repositorys.Interfaces;
 using System.Data;
+using System.Diagnostics;
 
 namespace RH.Auva.WebApp.Configurations.DependenciasInjection
 {
@@ -18,12 +19,19 @@ namespace RH.Auva.WebApp.Configurations.DependenciasInjection
 
         public static void AddDataBaseConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
-            string connectionString = configuration.GetConnectionString("MySql");
+            string connectionString = "";
+
+            if (!Debugger.IsAttached)
+                connectionString = configuration.GetConnectionString("Production");
+
+            else
+                connectionString = configuration.GetConnectionString("MySql");
+
 
             MySqlConnection con = new MySqlConnection(connectionString);
 
             services.AddSingleton<IDbConnection>(con);
-        }   
+        }
 
     }
 }
