@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\RH.Auva.Factory\RH.Auva.Factory.csproj" />
     <ProjectReference Include="..\RH.Auva.Persistence\RH.Auva.Persistence.csproj" />
+    <ProjectReference Include="..\RH.Sys.Security\RH.Sys.Security.csproj" />
   </ItemGroup>
 
   <ItemGroup>
