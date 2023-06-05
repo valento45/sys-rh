@@ -2,6 +2,7 @@
 using Dapper;
 using Rh.Auva.Domain.Departamentos;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -29,6 +30,7 @@ namespace RH.Auva.Persistence.Base
             try
             {
                 _dbConnection.Open();
+
 
                 int result = await _dbConnection.ExecuteAsync(query, param);
 
@@ -64,6 +66,27 @@ namespace RH.Auva.Persistence.Base
             {
                 await Console.Out.WriteLineAsync(ex.Message);
                 return null;
+            }
+            finally { _dbConnection.Close(); }
+        }
+
+        protected async Task<bool> ExecuteCommand(IDbCommand cmd)
+        {
+            try
+            {
+                _dbConnection.Open();
+
+                cmd.Connection = _dbConnection;
+
+                var result = cmd.ExecuteNonQuery();
+
+                return result > 0;
+
+            }
+            catch (Exception ex)
+            {
+                await Console.Out.WriteLineAsync(ex.Message);
+                return false;
             }
             finally { _dbConnection.Close(); }
         }

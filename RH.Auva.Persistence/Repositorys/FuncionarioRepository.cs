@@ -1,4 +1,5 @@
-﻿using Rh.Auva.Domain.Departamentos;
+﻿using MySql.Data.MySqlClient;
+using Rh.Auva.Domain.Departamentos;
 using Rh.Auva.Domain.Funcionarios;
 using RH.Auva.Persistence.Base;
 using RH.Auva.Persistence.Repositorys.Interfaces;
@@ -20,10 +21,21 @@ namespace RH.Auva.Persistence.Repositorys
 
         public async Task<bool> InserirAsync(FuncionarioDomain funcionario)
         {
-            string query = "insert into tb_funcionario (nome, valor_hora, data_importacao)" +
-                $" values ('{funcionario.Nome}', {funcionario.ValorHora}, str_to_date('{funcionario.DataImportacao.ToString("dd/MM/yyyy")}','%d/%m/%Y'))";
 
-            return await base.ExecuteAsync(query);
+            MySqlCommand cmd = new MySqlCommand("insert into tb_funcionario (nome, valor_hora, data_importacao)" +
+                " values (@nome, @valor_hora, @data_importacao)");
+
+            cmd.Parameters.AddWithValue(@"nome", funcionario.Nome);
+            cmd.Parameters.AddWithValue(@"valor_hora", funcionario.ValorHora);
+            cmd.Parameters.AddWithValue(@"data_importacao", DateTime.Now);
+
+
+            return await base.ExecuteCommand(cmd);
+
+            //string query = "insert into tb_funcionario (nome, valor_hora, data_importacao)" +
+            //    $" values ('{funcionario.Nome}', {funcionario.ValorHora}, str_to_date('{funcionario.DataImportacao.ToString("dd/MM/yyyy")}','%d/%m/%Y'))";
+
+            //return await base.ExecuteAsync(query);
         }
 
         public async Task<bool> UpdateAsync(FuncionarioDomain funcionario)
