@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <Folder Include="Models\PontoFuncionario\" />
+    <Folder Include="wwwroot\util\" />
   </ItemGroup>
 
 </Project>

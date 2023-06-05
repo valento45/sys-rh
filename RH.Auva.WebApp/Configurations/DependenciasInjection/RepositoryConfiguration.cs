@@ -1,4 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
+using Rh.Auva.Domain.Security;
 using RH.Auva.Persistence.Repositorys;
 using RH.Auva.Persistence.Repositorys.Interfaces;
 using System.Data;
@@ -23,13 +25,13 @@ namespace RH.Auva.WebApp.Configurations.DependenciasInjection
 
             if (!Debugger.IsAttached)
             {
-                string server = configuration.GetSection("Production:Server").Value;
-                string database = configuration.GetSection("Production:Database").Value;
-                string user = configuration.GetSection("Production:User").Value;
-                string pass = configuration.GetSection("Production:Pass").Value;
+                string encryptBase = configuration.GetConnectionString("Production");
 
-                connectionString = $"Server={server};Database={database};user={user};password={pass};SslMode=VerifyFull;";
-            } 
+                var baseDecrypt = Security.Decrypt(encryptBase);
+                var basedados = JsonConvert.DeserializeObject<DatabaseSecurity>(baseDecrypt);
+
+                connectionString = $"Server={basedados.Server};Database={basedados.Database};user={basedados.User};password={basedados.Pass};SslMode=VerifyFull;";
+            }
 
             else
                 connectionString = configuration.GetConnectionString("MySql");
