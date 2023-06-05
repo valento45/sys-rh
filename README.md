@@ -7,7 +7,7 @@ Sistema desenvolvido por Igor Carvalho.
 
 # Introdução
 
-Este website tem como objetivo a importação de arquivo csv com dados de pontos afim de exportar as informacoes de rendimentos/pagamentos em arquivo JSON
+Este website tem como objetivo a importação de arquivo csv com dados de pontos mensais afim de exportar as informacoes de rendimentos/pagamentos em arquivo JSON bem como horas extras, horas debito, dias extras e dias faltas de cada funcionário
 
 # Configurações necessárias para execução do projeto
 
