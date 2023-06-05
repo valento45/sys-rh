@@ -24,13 +24,13 @@ namespace RH.Auva.Persistence.Base
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
-        protected async Task<bool> ExecuteAsync(string query)
+        protected async Task<bool> ExecuteAsync(string query, object param = null)
         {
             try
             {
                 _dbConnection.Open();
 
-                int result = await _dbConnection.ExecuteAsync(query);
+                int result = await _dbConnection.ExecuteAsync(query, param);
 
                 return result > 0;
             }

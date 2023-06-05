@@ -21,7 +21,7 @@ namespace RH.Auva.Persistence.Repositorys
         public async Task<bool> InserirAsync(FuncionarioDomain funcionario)
         {
             string query = "insert into tb_funcionario (nome, valor_hora, data_importacao)" +
-                $" values ('{funcionario.Nome}', {funcionario.ValorHora}, {funcionario.DataImportacao});";
+                $" values ('{funcionario.Nome}', {funcionario.ValorHora}, str_to_date('{funcionario.DataImportacao.ToString("dd/MM/yyyy")}','%d/%m/%Y'))";
 
             return await base.ExecuteAsync(query);
         }
@@ -67,15 +67,15 @@ namespace RH.Auva.Persistence.Repositorys
         public async Task<bool> InserirAllAsync(IEnumerable<FuncionarioDomain> funcionarios)
         {
 
-            foreach(var funcionario in funcionarios.Distinct())
+            foreach (var funcionario in funcionarios.Distinct())
             {
-                if(await GetByIdAsync(funcionario.Codigo) == null)
+                if (await GetByIdAsync(funcionario.Codigo) == null)
                 {
-                     await InserirAsync(funcionario);
+                    await InserirAsync(funcionario);
                 }
             }
 
-            return true;            
+            return true;
         }
     }
 }

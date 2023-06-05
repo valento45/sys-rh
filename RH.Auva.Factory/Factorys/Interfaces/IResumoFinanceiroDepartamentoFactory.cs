@@ -1,5 +1,6 @@
 ﻿using Rh.Auva.Domain.ControlePonto;
 using Rh.Auva.Domain.ControlesIndices;
+using Rh.Auva.Domain.Departamentos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,6 @@ namespace RH.Auva.Factory.Factorys.Interfaces
         /// <param name="id_departamento"></param>
         /// <param name="pontosFuncionarios"></param>
         /// <returns></returns>
-        Task<DepartamentoRendimentoDomain> Calcular(int id_departamento, IEnumerable<PontoFuncionarioDomain> pontosFuncionarios);
+        Task<DepartamentoRendimentoDomain> Calcular(DepartamentoDomain departamento, IEnumerable<PontoFuncionarioDomain> pontosFuncionarios);
     }
 }

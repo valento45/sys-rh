@@ -10,12 +10,9 @@ nome varchar(100)
 drop table tb_funcionario
 create table tb_funcionario(
 id int auto_increment primary key,
-id_departamento int,
 nome varchar(300),
-valor_hora decimal,
-data_importacao datetime,
-CONSTRAINT id_departamento_fk foreign key(id_departamento)
-References tb_departamento(id)
+valor_hora DECIMAL(6,2),
+data_importacao datetime
 );
 
 drop table tb_ponto_funcionario
@@ -30,8 +27,10 @@ CONSTRAINT id_func_fk foreign key(id_funcionario)
 References tb_funcionario(id)
 );
 
-select tp.id as Codigo , entrada as Entrada, saida as Saida, almoco as Almoco, 
-data_ponto as DataPonto, id_funcionario as IdFuncionario from tb_ponto_funcionario as tp inner join tb_funcionario as tf on tf.id = tp.id_funcionario
-where tf.id = 1
+select id as Codigo, nome as Nome, valor_hora as ValorHora, data_importacao as DataImportacao from tb_funcionario WHERE id = 1
+
+select * from tb_funcionario
+
+insert into tb_funcionario (nome, valor_hora, data_importacao) values (nome,valor_hora, data_importacao)
 
 

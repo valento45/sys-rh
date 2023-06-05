@@ -11,6 +11,7 @@ namespace Rh.Auva.Domain.Departamentos
     public class DepartamentoDomain
     {
         #region Propriedades 
+        
         public int Codigo { get; set; }
         public string NomeDepartamento { get; set; }
         #endregion

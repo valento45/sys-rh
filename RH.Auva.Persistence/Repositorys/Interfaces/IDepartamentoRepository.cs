@@ -44,7 +44,22 @@ namespace RH.Auva.Persistence.Repositorys.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<DepartamentoDomain> GetByIdAsync(int id);       
+        Task<DepartamentoDomain> GetByIdAsync(int id);
 
+
+        /// <summary>
+        /// Verifica se existe o departamento na base de dados
+        /// </summary>
+        /// <param name="departamento"></param>
+        /// <returns></returns>
+        Task<bool> Exists(string departamento);
+
+
+        /// <summary>
+        /// Obter departamento por nome 
+        /// </summary>
+        /// <param name="departamento"></param>
+        /// <returns></returns>
+        Task<DepartamentoDomain> GetByNome(string departamento);
     }
 }

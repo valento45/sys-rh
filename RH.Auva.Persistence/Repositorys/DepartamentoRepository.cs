@@ -64,5 +64,32 @@ namespace RH.Auva.Persistence.Repositorys
 
             return result?.FirstOrDefault() ?? throw new ArgumentNullException(nameof(DepartamentoRepository));
         }
+
+        public async Task<bool> Exists(string departamento)
+        {
+            string query = "select id as Codigo, nome as NomeDepartamento  from tb_departamento" +
+                $" WHERE nome  LIKE '{departamento}'";
+
+            var result = await base.QueryAsync<DepartamentoDomain>(query);
+
+
+            return result?.Any() ?? false;
+
+        }
+
+
+        public async Task<DepartamentoDomain> GetByNome(string departamento)
+        {
+            string query = "select id as Codigo, nome as NomeDepartamento  from tb_departamento" +
+                $" WHERE nome  LIKE '{departamento}'";
+
+            var result = await base.QueryAsync<DepartamentoDomain>(query);
+
+
+            return result?.FirstOrDefault() ?? null;
+
+        }
+
+
     }
 }

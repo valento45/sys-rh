@@ -4,11 +4,11 @@
 });
 
 
-function importar() { 
+//function importar() { 
 
-    var select = document.getElementById("cmbDepartamentos");
+//    var select = document.getElementById("cmbDepartamentos");
 
-    var opcaoValor = select.options[select.selectedIndex].value;
-    $("#txtDepartamentoSelecionado").val(opcaoValor);
+//    var opcaoValor = select.options[select.selectedIndex].value;
+//    $("#txtDepartamentoSelecionado").val(opcaoValor);
             
-}
+//}

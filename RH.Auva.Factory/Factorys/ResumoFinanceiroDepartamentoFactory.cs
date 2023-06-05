@@ -1,5 +1,6 @@
 ﻿using Rh.Auva.Domain.ControlePonto;
 using Rh.Auva.Domain.ControlesIndices;
+using Rh.Auva.Domain.Departamentos;
 using RH.Auva.Factory.Factorys.Interfaces;
 using RH.Auva.Persistence.Repositorys.Interfaces;
 using System;
@@ -19,12 +20,11 @@ namespace RH.Auva.Factory.Factorys
             _departamentoRepository = departamentoRepository;
         }
 
-        public async Task<DepartamentoRendimentoDomain> Calcular(int id_departamento, IEnumerable<PontoFuncionarioDomain> pontosFuncionarios)
+        public async Task<DepartamentoRendimentoDomain> Calcular(DepartamentoDomain departamento, IEnumerable<PontoFuncionarioDomain> pontosFuncionarios)
         {
             var dptoRendimento = new DepartamentoRendimentoDomain();
 
-
-            dptoRendimento.InformarDepartamento(await _departamentoRepository.GetByIdAsync(id_departamento));
+            dptoRendimento.InformarDepartamento(departamento);
             dptoRendimento.InformarPontosFuncionario(pontosFuncionarios.ToList());
 
             dptoRendimento.Calcular();

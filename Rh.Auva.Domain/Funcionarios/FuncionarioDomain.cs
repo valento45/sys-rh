@@ -14,11 +14,6 @@ namespace Rh.Auva.Domain.Funcionarios
         #region PROPRIEDADE
         public int Codigo { get; set; }    
         public decimal ValorHora { get; set; }
-
-        [JsonIgnore]
-        public int CodigoDepartamento { get; set; }
-
-        [JsonIgnore]
         public DateTime DataImportacao { get; set; }
 
         #endregion

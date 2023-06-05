@@ -1,9 +1,11 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.AspNetCore.Mvc;
 using MySqlX.XDevAPI.Common;
 using Newtonsoft.Json;
 using Rh.Auva.Domain.ControlePonto;
 using Rh.Auva.Domain.ControlesIndices;
+using Rh.Auva.Domain.Departamentos;
 using RH.Auva.Application.Application.CSV.Interfaces;
 using RH.Auva.Application.Models.CsvModels;
 using RH.Auva.Application.Models.Departamento;
@@ -21,7 +23,7 @@ namespace RH.Auva.Application.Application.CSV
         private readonly IFuncionarioRepository _funcionario;
         private readonly IResumoFinanceiroDepartamentoFactory _resumoFinanceiroDepartamentoFactory;
 
-        public CsvApplication(ICsvCommand csvCommand, IDepartamentoRepository departamentoRepository, 
+        public CsvApplication(ICsvCommand csvCommand, IDepartamentoRepository departamentoRepository,
             IFuncionarioRepository funcionario, IResumoFinanceiroDepartamentoFactory resumoFinanceiroDepartamentoFactory)
         {
             _csvCommand = csvCommand;
@@ -49,15 +51,15 @@ namespace RH.Auva.Application.Application.CSV
         }
 
 
-        private async static Task<byte[]> ExportarJson(DepartamentoRendimentoDomain resumoFinanceiro)
+        private async static Task<byte[]> ExportarJson<T>(T objeto)
         {
             byte[] result;
 
             using (MemoryStream ms = new MemoryStream())
             {
-                using(TextWriter textWriter = new StreamWriter(ms))
+                using (TextWriter textWriter = new StreamWriter(ms))
                 {
-                    await textWriter.WriteAsync(JsonConvert.SerializeObject(resumoFinanceiro));
+                    await textWriter.WriteAsync(JsonConvert.SerializeObject(objeto));
                     await textWriter.FlushAsync();
 
                     result = ms.ToArray();
@@ -68,26 +70,46 @@ namespace RH.Auva.Application.Application.CSV
         }
 
 
-        public async Task<FileCsv> GetFileAsync(ImportacaoPontoDepartamentoViewModel obj)
-        {               
-
-            var pontosfuncionario = await _csvCommand.ImportarPontosFuncionario(await ObterBytes(obj.File));
+        private async Task<DepartamentoRendimentoDomain> ObterResumoFinanceiro(DepartamentoDomain departamento, IFormFile file)
+        {
+            var pontosfuncionario = await _csvCommand.ImportarPontosFuncionario(await ObterBytes(file));
             await _funcionario.InserirAllAsync(pontosfuncionario.Select(x => x.Funcionario));
 
-
-
             var resumoFinanceiro =
-                await _resumoFinanceiroDepartamentoFactory.Calcular(obj.IdDepartamentoSelecionao, pontosfuncionario);
-            
+                    await _resumoFinanceiroDepartamentoFactory.Calcular(departamento, pontosfuncionario);
 
+            return resumoFinanceiro;
+        }
+
+        public async Task<FileCsv> GetFileAsync(ImportacaoPontoDepartamentoViewModel obj)
+        {
+            List<DepartamentoRendimentoDomain> rendimentoDepartamentos =
+                new List<DepartamentoRendimentoDomain>();
+
+            foreach (var file in obj.File)
+            {
+                var dadosArquivo = file.FileName.Split("-");
+
+                string nomeDepartamento = dadosArquivo.First();
+
+                if (!await _departamentoRepository.Exists(nomeDepartamento))
+                {
+                    await _departamentoRepository.InserirAsync(
+                        new DepartamentoDomain { NomeDepartamento = nomeDepartamento });
+                }
+
+                var departamento = await _departamentoRepository.GetByNome(nomeDepartamento);
+
+                rendimentoDepartamentos.Add(await ObterResumoFinanceiro(departamento, file));
+            }
 
             var result = new FileCsv();
             result.Filename = $"PontosFuncionarios_{DateTime.Now.ToString("dd_MM_yyyy_HH_mm")}.json";
-            result.Bytes = await ExportarJson(resumoFinanceiro);
+            result.Bytes = await ExportarJson(rendimentoDepartamentos);
 
             return result;
 
         }
-       
+
     }
 }
