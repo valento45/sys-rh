@@ -22,7 +22,14 @@ namespace RH.Auva.WebApp.Configurations.DependenciasInjection
             string connectionString = "";
 
             if (!Debugger.IsAttached)
-                connectionString = configuration.GetConnectionString("Production");
+            {
+                string server = configuration.GetSection("Production:Server").Value;
+                string database = configuration.GetSection("Production:Database").Value;
+                string user = configuration.GetSection("Production:User").Value;
+                string pass = configuration.GetSection("Production:Pass").Value;
+
+                connectionString = $"Server={server};Database={database};user={user};password={pass};SslMode=VerifyFull;";
+            } 
 
             else
                 connectionString = configuration.GetConnectionString("MySql");
