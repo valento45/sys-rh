@@ -21,4 +21,4 @@ Este website tem como objetivo a importação de arquivo csv com dados de pontos
 
 ![image](https://github.com/valento45/sys-rh/assets/54119744/117ba18f-3f93-44b9-b349-a4e88bf072c7)
 
-5º Aproveite a aplicação ! Se no futuro algum aluno ou colega puder absorver algo, estarei mais do que satisfeito ! <3 
+5º Aproveite a aplicação ! Se no futuro algum aluno ou colega puder absorver algo, estarei mais do que satisfeito, portanto, deixo o repositório em público ! <3 
