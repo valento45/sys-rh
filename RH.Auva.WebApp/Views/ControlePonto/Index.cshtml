@@ -3,23 +3,14 @@
 
 <div class="container-fluid mt-5">
 
-    <h2>Importar folha de pontos</h2>
+    <h2>Importar folha de ponto</h2>
     <hr />
 
 
     <div class="row">
-@*        <label>Selecione um departamento:</label>
-        <select id="cmbDepartamentos" class="form-select" style="max-width: 600px;">
-            @foreach (var dpto in Model.Departamentos)
-            {
-                <option value="@dpto.Codigo">@dpto.NomeDepartamento</option>
-            }
-        </select>*@
-
 
         <button class="btn btn-close-white" data-toggle="tooltip" title="Novo departamento" style="width: 40px; margin-left: 5px;"
                 onclick="javascript:window.location.href='../Departamento/Incluir'">
-@*            <img style="width: 30px;" src="~/imgs/Novo_2.png" />*@
         </button>
 
     </div>
@@ -28,7 +19,7 @@
     <form asp-action="Importar" asp-controller="ControlePonto" method="post" enctype="multipart/form-data">
         <div style="width: 100%;" class="mt-5">
             <input id="campoArquivo" asp-for="File"  multiple="multiple" size="100" />
-            @*<input type="hidden" id="txtDepartamentoSelecionado" asp-for="IdDepartamentoSelecionao"  />*@
+            
             <br />
             <button class="btn btn-dark btn-black-hover mt-5" style="text-align: center;" type="submit">Importar</button>
         </div>
