@@ -73,7 +73,7 @@ namespace RH.Auva.Application.Application.CSV
         private async Task<DepartamentoRendimentoDomain> ObterResumoFinanceiro(DepartamentoDomain departamento, IFormFile file)
         {
             var pontosfuncionario = await _csvCommand.ImportarPontosFuncionario(await ObterBytes(file));
-            await _funcionario.InserirAllAsync(pontosfuncionario.Select(x => x.Funcionario));
+            _ = _funcionario.InserirAllAsync(pontosfuncionario.Select(x => x.Funcionario));
 
             var resumoFinanceiro =
                     await _resumoFinanceiroDepartamentoFactory.Calcular(departamento, pontosfuncionario);
