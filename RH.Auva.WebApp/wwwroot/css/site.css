@@ -27,3 +27,29 @@ body {
     color: white !important;
     
 }
+
+.icon {
+    width: 40px;
+    height: 30px;
+}
+li {
+    list-style: none;
+}
+
+footer{
+    background-color: #008080;
+}
+
+.footer a, .footer span, .footer div{
+    color: ghostwhite;
+}
+
+.footer span{
+    font-size: 20px;
+}
+
+.btn-close-white{
+    cursor: pointer;
+}
+
+

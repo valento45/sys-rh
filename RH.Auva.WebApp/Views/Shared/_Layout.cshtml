@@ -44,8 +44,28 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Recursos Humanos AUVA - <a asp-area="" asp-controller="Home" asp-action="Privacy">About</a>
+
+        <div class="container mt-5">
+
+            <div class="row">
+                <span>Contatos</span>
+                <div style="cursor:pointer;" class="align-content-center align-items-center justify-content-center mt-3"
+                     onclick="javascript:window.open('https://www.linkedin.com/in/igor-carvalho-022b9818b/', '_blank')"
+                     data-toggle="tooltip" title="In. Igor Carvalho">
+                    <img src="~/imgs/linkedin-icon1.png" class="icon btn-close-white" /><a style="margin-left:5px;">Linkedin</a>
+                </div>
+
+                <div style="cursor:pointer;" class="align-content-center align-items-center justify-content-center mt-3"
+                     data-toggle="tooltip" title="Email de contato">
+                    <img src="~/imgs/email-icon1.png" class="icon btn-close-white" /><a style="margin-left:5px;">iggor1935@hotmail.com</a>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="container mt-5">
+            &copy; 2023 - Recursos Humanos - <a asp-area="" asp-controller="Home" asp-action="Privacy">About</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
