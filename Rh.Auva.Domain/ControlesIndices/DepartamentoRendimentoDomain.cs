@@ -76,7 +76,7 @@ namespace Rh.Auva.Domain.ControlesIndices
             foreach (var ponto in PontoFuncionarios)
             {
                 var resumoPonto = new ResumoDePontosFuncionarioDomain();
-                resumoPonto.Funcionario = ponto.Funcionario;
+                 resumoPonto.Funcionario = ponto.Funcionario;
                 resumoPonto.DiasTrabalhados++;
 
                 if (ResumoPontoFuncionarios.Any(x => x.Funcionario.Codigo == ponto.Funcionario.Codigo))

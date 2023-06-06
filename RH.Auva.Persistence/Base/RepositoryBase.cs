@@ -45,6 +45,29 @@ namespace RH.Auva.Persistence.Base
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        protected async Task<List<int>> QueryAsync(string query) 
+        {
+            try
+            {
+                _dbConnection.Open();
+
+                var result = await _dbConnection.QueryAsync<int>(query);
+
+                return result.ToList();
+
+            }
+            catch (Exception ex)
+            {
+                await Console.Out.WriteLineAsync(ex.Message);
+                return null;
+            }
+            finally { _dbConnection.Close(); }
+        }
 
         /// <summary>
         /// Método responsável fazer o query na base (select)

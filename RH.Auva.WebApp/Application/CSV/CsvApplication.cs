@@ -92,10 +92,10 @@ namespace RH.Auva.Application.Application.CSV
 
                 string nomeDepartamento = dadosArquivo.First();
 
-                if (!await _departamentoRepository.Exists(nomeDepartamento))
+                if (! await _departamentoRepository.Exists(nomeDepartamento))
                 {
-                    await _departamentoRepository.InserirAsync(
-                        new DepartamentoDomain { NomeDepartamento = nomeDepartamento });
+                    _ = _departamentoRepository.InserirAsync(
+                       new DepartamentoDomain { NomeDepartamento = nomeDepartamento });
                 }
 
                 var departamento = await _departamentoRepository.GetByNome(nomeDepartamento);

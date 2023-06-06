@@ -23,9 +23,9 @@ namespace RH.Auva.Persistence.Repositorys
         public async Task<bool> InserirAsync(DepartamentoDomain departamento)
         {
 
-                string query = $"insert into tb_departamento (nome) values ('{departamento.NomeDepartamento}')";
-                return await base.ExecuteAsync(query);
-            
+            string query = $"insert into tb_departamento (nome) values ('{departamento.NomeDepartamento}')";
+            return await base.ExecuteAsync(query);
+
         }
 
         public async Task<bool> AtualizarAsync(DepartamentoDomain departamento)
@@ -67,13 +67,13 @@ namespace RH.Auva.Persistence.Repositorys
 
         public async Task<bool> Exists(string departamento)
         {
-            string query = "select id as Codigo, nome as NomeDepartamento  from tb_departamento" +
+            string query = "select count(*)  from tb_departamento" +
                 $" WHERE nome  LIKE '{departamento}'";
 
-            var result = await base.QueryAsync<DepartamentoDomain>(query);
+            List<int> result = await base.QueryAsync(query);
 
 
-            return result?.Any() ?? false;
+            return result?.First() > 0;
 
         }
 
