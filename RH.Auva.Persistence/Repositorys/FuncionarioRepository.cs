@@ -56,7 +56,7 @@ namespace RH.Auva.Persistence.Repositorys
         {
             string query = $"select id as Codigo, nome as Nome, valor_hora as ValorHora," +
                 $" data_importacao as DataImportacao from tb_funcionario" +
-                $" WHERE nome LIKE '{filtro}%'";
+                $" WHERE nome LIKE '%{filtro}%'";
 
             return await base.QueryAsync<FuncionarioDomain>(query);
         }
