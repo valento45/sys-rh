@@ -64,7 +64,7 @@ namespace RH.Auva.WebApp.Controllers
         public async Task<IActionResult> ListarDepartamentosPartial(string filtro = "")
         {
             var result = await _departamentoRepository.GetAllAsync(filtro);
-            return PartialView("Departamento/Partial/ListaDepartamentosPartial", result); ;
+            return PartialView("Departamento/Partial/ListaDepartamentosPartial", result); 
         }
 
     }
